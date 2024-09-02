@@ -1,4 +1,4 @@
-$filePath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.txt')
+$filePath = 'C:\working\flag.txt'
 
 $aes = New-Object System.Security.Cryptography.AesManaged
 $aes.KeySize = 256
@@ -12,7 +12,6 @@ $vee = [System.Convert]::ToBase64String($aes.IV)
 $content = [System.IO.File]::ReadAllBytes($filePath)
 
 $encryptor = $aes.CreateEncryptor($aes.Key, $aes.IV)
-
 $encryptedData = $encryptor.TransformFinalBlock($content, 0, $content.Length)
 
 [System.IO.File]::WriteAllBytes($filePath, $encryptedData)
