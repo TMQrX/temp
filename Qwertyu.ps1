@@ -17,7 +17,6 @@ $encryptedBase64 = [System.Convert]::ToBase64String($encryptedData)
 
 [System.IO.File]::WriteAllText($efPath, $encryptedBase64)
 
-# In key và IV ra màn hình để đoạn Python code lấy về
 $cee
 $vee
 
