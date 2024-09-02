@@ -1,4 +1,4 @@
-$filePath = 'C:\working\flag.txt'
+$filePath = 'C:\flag.txt'
 
 $aes = New-Object System.Security.Cryptography.AesManaged
 $aes.KeySize = 256
