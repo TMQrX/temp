@@ -1,4 +1,4 @@
-$filePath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.jpg')
+$filePath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.txt')
 
 $aes = New-Object System.Security.Cryptography.AesManaged
 $aes.KeySize = 256
