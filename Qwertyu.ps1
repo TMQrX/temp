@@ -1,5 +1,4 @@
-$ifPath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.jpg')
-$efPath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.enc')
+$filePath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'flag.jpg')
 
 $aes = New-Object System.Security.Cryptography.AesManaged
 $aes.KeySize = 256
@@ -10,16 +9,13 @@ $aes.GenerateIV()
 $cee = [System.Convert]::ToBase64String($aes.Key)
 $vee = [System.Convert]::ToBase64String($aes.IV)
 
-$content = [System.IO.File]::ReadAllBytes($ifPath)
-$encryptor = $aes.CreateEncryptor($aes.Key, $aes.IV)
-$encryptedData = $encryptor.TransformFinalBlock($content, 0, $content.Length)
-$encryptedBase64 = [System.Convert]::ToBase64String($encryptedData)
+$content = [System.IO.File]::ReadAllBytes($filePath)
 
-[System.IO.File]::WriteAllText($efPath, $encryptedBase64)
+$encryptor = $aes.CreateEncryptor($aes.Key, $aes.IV)
+
+$encryptedData = $encryptor.TransformFinalBlock($content, 0, $content.Length)
+
+[System.IO.File]::WriteAllBytes($filePath, $encryptedData)
 
 $cee
 $vee
-
-if (Test-Path $ifPath) {
-    Remove-Item $ifPath -Force
-}
