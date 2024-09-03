@@ -14,7 +14,9 @@ $content = [System.IO.File]::ReadAllBytes($filePath)
 $encryptor = $aes.CreateEncryptor($aes.Key, $aes.IV)
 $encryptedData = $encryptor.TransformFinalBlock($content, 0, $content.Length)
 
-[System.IO.File]::WriteAllBytes($filePath, $encryptedData)
+$encryptedBase64 = [System.Convert]::ToBase64String($encryptedData)
+
+[System.IO.File]::WriteAllText($filePath, $encryptedBase64)
 
 $cee
 $vee
